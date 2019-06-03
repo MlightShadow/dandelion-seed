@@ -32,5 +32,23 @@
         |-test # 测试, 生成工具
         
 ```
+### 2.2 配置数据库
+生成工具使用的第一步就是配置数据库
+`CodeGenerator.java`
+```java
+    private static final String JDBC_URL = "jdbc:mysql://host:3306/test";
+    private static final String JDBC_USERNAME = "root";
+    private static final String JDBC_PASSWORD = "root";
+    private static final String JDBC_DIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
+```
+同样, 配置文件也是
 
+```
+spring.datasource.auth.url=jdbc:mysql://host:3306/test?useUnicode=true&characterEncoding=UTF-8
+spring.datasource.auth.username=root
+spring.datasource.auth.password=root
+spring.datasource.auth.driver-class-name=com.mysql.jdbc.Driver
+```
 
+### 2.3 
+从 `CodeGenerator.java` 启动生成器, 输入想要生成的表名即可
