@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.dao.ApiLogMapper">
+  <resultMap id="BaseResultMap" type="com.company.project.model.ApiLog">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="http_method" jdbcType="VARCHAR" property="httpMethod" />
+    <result column="class_method" jdbcType="VARCHAR" property="classMethod" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="from_client" jdbcType="VARCHAR" property="fromClient" />
+    <result column="request_time" jdbcType="TIMESTAMP" property="requestTime" />
+    <result column="response_time" jdbcType="TIMESTAMP" property="responseTime" />
+    <result column="param" jdbcType="LONGVARCHAR" property="param" />
+    <result column="result" jdbcType="LONGVARCHAR" property="result" />
+  </resultMap>
+</mapper>
