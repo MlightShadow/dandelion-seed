@@ -44,10 +44,10 @@
 同样, 配置文件也是
 
 ```
-spring.datasource.auth.url=jdbc:mysql://host:3306/test?useUnicode=true&characterEncoding=UTF-8
-spring.datasource.auth.username=root
-spring.datasource.auth.password=root
-spring.datasource.auth.driver-class-name=com.mysql.jdbc.Driver
+    spring.datasource.auth.url=jdbc:mysql://host:3306/test?useUnicode=true&characterEncoding=UTF-8
+    spring.datasource.auth.username=root
+    spring.datasource.auth.password=root
+    spring.datasource.auth.driver-class-name=com.mysql.jdbc.Driver
 ```
 
 ### 2.3 
