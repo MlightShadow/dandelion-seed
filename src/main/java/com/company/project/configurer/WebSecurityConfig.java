@@ -86,7 +86,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) {
         web.ignoring().antMatchers("swagger-ui.html", "**/swagger-ui.html", "/favicon.ico", "/**/*.css", "/**/*.js",
-                "/**/*.png", "/**/*.gif", "/swagger-resources/**", "/v2/**", "/**/*.ttf");
+                "/**/*.png", "/**/*.gif", "/swagger-resources/**", "/v2/**", "/**/*.ttf", "/file/**"); // 静态文件添加
         web.ignoring().antMatchers("/v2/api-docs", "/swagger-resources/configuration/ui", "/swagger-resources",
                 "/swagger-resources/configuration/security", "/swagger-ui.html");
     }

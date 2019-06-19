@@ -5,9 +5,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MD5Util {
-    private String key = "heiheihei";
+    private String key = "key";
 
-    public String md5(String text) throws Exception {
+    public String md5(String text) {
         return DigestUtils.md5Hex(text + this.key);
     }
 }

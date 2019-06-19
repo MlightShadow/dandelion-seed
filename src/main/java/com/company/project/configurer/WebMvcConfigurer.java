@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.TimeZone;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -55,9 +56,15 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
     @Value("${spring.profiles.active}")
     private String env;// 当前激活的配置文件
 
+    @Value("${web.upload-path}")
+    private String filePath;
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
+        // 本地上传静态文件
+        registry.addResourceHandler("/file/**").addResourceLocations("file:" + filePath);
+
         // 添加swagger
         registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
@@ -70,6 +77,7 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
         FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
         FastJsonConfig config = new FastJsonConfig();
         JSON.DEFFAULT_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
+        JSON.defaultTimeZone = TimeZone.getTimeZone("Asia/Shanghai");
         config.setSerializerFeatures(SerializerFeature.WriteMapNullValue, // 保留空的字段
                 SerializerFeature.WriteDateUseDateFormat);
         // SerializerFeature.WriteNullStringAsEmpty,//String null -> ""
