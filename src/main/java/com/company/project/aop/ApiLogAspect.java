@@ -1,14 +1,8 @@
 package com.company.project.aop;
 
-import java.util.Date;
-
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import com.alibaba.fastjson.JSONArray;
 import com.company.project.dto.AuthorizedInfo;
-import com.company.project.model.ApiLog;
-import com.company.project.service.ApiLogService;
 import com.company.project.util.SecurityContextUtil;
 import com.company.project.util.UUIDUtil;
 
@@ -31,9 +25,6 @@ public class ApiLogAspect {
     @Autowired
     private UUIDUtil uuid;
 
-    @Resource
-    private ApiLogService apiLogService;
-
     ThreadLocal<String> request_id = new ThreadLocal<>();
 
     @Pointcut("@annotation(com.company.project.aop.NeedApiLog)")
@@ -45,36 +36,19 @@ public class ApiLogAspect {
         // 接收到请求，记录请求内容
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
-
         AuthorizedInfo authInfo = securityContextUtil.getAuthInfo();
 
         request_id.set(uuid.getUUID());
-        ApiLog log = new ApiLog();
-        log.setId(request_id.get());
-        log.setUrl(request.getRequestURI().toString());
-        log.setHttpMethod(request.getMethod());
-        log.setClassMethod(joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
-        log.setIp(getIpAddress(request));
-        if (authInfo != null) {
-            log.setUserId(authInfo.getId());
-            log.setFromClient("backend");
-        }
-        log.setRequestTime(new Date());
-
-        log.setParam(JSONArray.toJSONString(joinPoint.getArgs()));
-
-        apiLogService.save(log);
+        String ip = this.getIpAddress(request);
+        System.out.println(ip);
+        System.out.println(authInfo.getUsername());
+        // 这里写log
     }
 
     @AfterReturning(returning = "ret", pointcut = "apiLog()")
     public void doAfterReturning(Object ret) throws Throwable {
         // 处理完请求，返回内容
-        ApiLog log = new ApiLog();
-        log.setId(request_id.get());
-        log.setResponseTime(new Date());
-        log.setResult(ret.toString());
-
-        apiLogService.update(log);
+        // 这里更新log
     }
 
     private String getIpAddress(HttpServletRequest request) {
