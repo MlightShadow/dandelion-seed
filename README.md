@@ -62,6 +62,14 @@
     spring.datasource.auth.driver-class-name=com.mysql.jdbc.Driver
 ```
 
-### 2.3
+### 2.3 生成代码
 
 从 `CodeGenerator.java` 启动生成器, 输入想要生成的表名即可
+
+### 3.1 部署
+
+可选部署命令,方便输出
+
+```bash
+java -jar /work_dir/seed_server.jar > log.out 2>&1 &
+```
