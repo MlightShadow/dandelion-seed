@@ -6,7 +6,7 @@
 
 示例代码参考: [dandelion](https://github.com/MlightShadow/dandelion)
 
-该仓库只存放必要的构建
+该仓库只存放必要的构建, 开箱即用, 只需要配置数据库即可开始体验
 
 ## 1 关于整合
 
@@ -21,8 +21,6 @@
 ## 2 快速上手
 
 ### 2.1 文件结构
-
-主要结构是一个标准的spring boot的文件结构
 
 ```none
     |-src
@@ -43,6 +41,8 @@
 
 ### 2.2 配置数据库
 
+目前支持两种(mssql, mysql)数据库连接, 可以通过多数据源同时使用
+
 生成工具使用的第一步就是配置数据库
 `CodeGenerator.java`
 
@@ -53,6 +53,13 @@
     private static final String JDBC_DIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
 ```
 
+```java
+    private static final String JDBC_URL = "jdbc:sqlserver://host:1433;databaseName=test";
+    private static final String JDBC_USERNAME = "sa";
+    private static final String JDBC_PASSWORD = "sa";
+    private static final String JDBC_DIVER_CLASS_NAME = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+```
+
 同样, 配置文件也是
 
 ```prop
@@ -60,6 +67,13 @@
     spring.datasource.auth.username=root
     spring.datasource.auth.password=root
     spring.datasource.auth.driver-class-name=com.mysql.jdbc.Driver
+```
+
+```prop
+    spring.datasource.auth.url=jdbc:sqlserver://host:1433;databaseName=test
+    spring.datasource.auth.username=sa
+    spring.datasource.auth.password=sa
+    spring.datasource.auth.driver-class-name=com.microsoft.sqlserver.jdbc.SQLServerDriver
 ```
 
 ### 2.3 生成代码
