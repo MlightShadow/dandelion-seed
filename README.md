@@ -2,7 +2,7 @@
 
 ## 简介
 
-[seed](https://github.com/lihengming/spring-boot-api-project-seed "") 是一个github上基于Spring Boot & MyBatis的种子项目, 非常适合搭建中小型项目RESTful API, 通过代码生成, 只要完成数据库结构, 即可直接生成基础数据操作接口完成代码搭建, 真正实现只关心业务逻辑的开发.
+[lihengming/spring-boot-api-project-seed](https://github.com/lihengming/spring-boot-api-project-seed "") 是一个github上基于Spring Boot & MyBatis的种子项目, 非常适合搭建中小型项目RESTful API, 通过代码生成, 只要完成数据库结构, 即可直接生成基础数据操作接口完成代码搭建, 真正实现只关心业务逻辑的开发.
 
 示例代码参考: [dandelion](https://github.com/MlightShadow/dandelion)
 
@@ -12,7 +12,7 @@
 
 ### 1.1 框架
 
-[seed](https://github.com/lihengming/spring-boot-api-project-seed "") 只是一个最基础的子项目, 我对它进行了整合和修改, 去除了大量数据库约束, 以及通用Mapper的相关限制, 整合还包括了 jwt + 缓存/redis的鉴权, 通过spring-security 获取身份信息 content, spring-cache 缓存, swaggerAPI文档生成等一系列开发所需功能.
+[lihengming/spring-boot-api-project-seed](https://github.com/lihengming/spring-boot-api-project-seed "") 只是一个非常不错的种子项目, 我对它进行了整合和修改, 去除了大量数据库约束, 以及通用Mapper的相关限制, 整合还包括了 jwt + 缓存/redis的鉴权, 通过spring-security 获取身份信息 content, spring-cache 缓存, swaggerAPI文档生成等一系列开发所需功能, 当然目前只是用于我个人的喜好, 也行你也会觉得好用.
 
 ### 1.2 代码生成
 
@@ -87,3 +87,5 @@
 ```bash
 java -jar /work_dir/seed_server.jar > log.out 2>&1 &
 ```
+
+根目录下 `release.sh` 可以用于发布, `Dockerfile` 可部署至docker容器
