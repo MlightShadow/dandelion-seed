@@ -58,9 +58,10 @@ public class HttpUtil {
     }
 
     // POST方法,发送json格式（如果不需要header可传入null）
-    public static CloseableHttpResponse postJson(String url, String jsonString, Map<String, String> headers)
+    public static CloseableHttpResponse postJson(String url, String jsonString)
             throws ClientProtocolException, IOException {
         // 准备请求头信息
+        Map<String, String> headers = new HashMap<String, String>();
         headers.put("Content-Type", "application/json");// postman中有写
         return post(url, jsonString, null, headers);
     }
