@@ -12,7 +12,7 @@
 
 ### 1.1 框架
 
-[lihengming/spring-boot-api-project-seed](https://github.com/lihengming/spring-boot-api-project-seed "") 只是一个非常不错的种子项目, 我对它进行了整合和修改, 去除了大量数据库约束, 以及通用Mapper的相关限制, 整合还包括了 jwt + 缓存/redis的鉴权, 通过spring-security 获取身份信息 content, spring-cache 缓存, swaggerAPI文档生成等一系列开发所需功能, 当然目前只是用于我个人的喜好, 也行你也会觉得好用.
+[lihengming/spring-boot-api-project-seed](https://github.com/lihengming/spring-boot-api-project-seed "") 是一个非常不错的种子项目, 非常推荐使用, 我对它进行了整合和修改, 去除了一些通用Mapper中的数据库约束, 添加了insert和update的batch操作, 整合还包括了 jwt + 缓存/redis的鉴权, 通过spring-security 获取身份信息 content, spring-cache 缓存, swaggerAPI文档生成等一系列开发所需功能, 当然目前只是用于我个人的喜好, 也行你也会觉得好用.
 
 ### 1.2 代码生成
 
@@ -27,6 +27,7 @@
         |-main # 省略了包层次
         |   |-aop # log, 多数据源切面和注解
         |   |-configurer # 配置
+        |   |-constant # 常量
         |   |-core # 核心接口
         |   |-dao # 生成的Mapper文件, 一般无需修改
         |   |-dto # restful 接口需要的实体类
