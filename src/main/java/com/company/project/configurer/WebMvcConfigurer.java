@@ -29,6 +29,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
@@ -132,6 +135,19 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
                 .allowedMethods("GET", "POST", "DELETE", "PUT").maxAge(3600);
     }
 
+    @Bean
+    public CorsFilter corsFilter(){
+        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        final CorsConfiguration config = new CorsConfiguration();
+        config.setAllowCredentials(true);
+        config.setAllowedHeaders(Arrays.asList("*"));
+        config.setAllowedOrigins(Arrays.asList("*"));
+        config.setAllowedMethods(Arrays.asList("*"));
+        config.setMaxAge(10000L);
+        source.registerCorsConfiguration("/**", config);
+        return new CorsFilter(source);
+    }
+
     // 添加拦截器
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -204,7 +220,7 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
             protected void postProcessContext(Context context) {
                 if (Redirect443) {
                     SecurityConstraint securityConstraint = new SecurityConstraint();
-                    securityConstraint.setUserConstraint("CONFIDENTIAL");// confidential 
+                    securityConstraint.setUserConstraint("CONFIDENTIAL");// confidential
                     SecurityCollection collection = new SecurityCollection();
                     collection.addPattern("/*");
                     securityConstraint.addCollection(collection);
